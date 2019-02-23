@@ -2,7 +2,7 @@
 
 ## 简介
 
-sinx 包是个中文语录集，素材主要来自[统计之都](http://d.cosx.org)，未来也不排除采集其他来源的语录。欢迎大家贡献精彩语录。直接 PR 到[项目主页 ](https://github.com/pzhaonet/cosx/blob/master/inst/sinxs/sinxs.csv) 即可。
+sinx 包是个中文语录集，素材主要来自[统计之都](http://d.cosx.org)，未来也不排除采集其他来源的语录。欢迎大家贡献精彩语录。直接 PR 到[项目主页 ](https://github.com/pzhaonet/sinx/blob/master/inst/sinxs/sinxs.csv) 即可。
 
 相关链接：[缘起](https://d.cosx.org/d/7673/156)，[讨论](https://d.cosx.org/d/420467)。
 
