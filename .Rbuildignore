@@ -1,0 +1,10 @@
+^Meta$
+^doc$
+LICENCE
+^\.Rproj\.user$
+\.Rproj$
+^\.gitignore$
+^\.travis\.yml$
+showcase/
+readme*.*
+inst2/

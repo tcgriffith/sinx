@@ -1,0 +1,8 @@
+Meta
+doc
+.Rproj.user
+.Rhistory
+.RData
+revdep/checks
+revdep/library
+inst2/

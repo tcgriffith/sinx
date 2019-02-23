@@ -1,0 +1,19 @@
+Package: sinx
+Version: 0.0.5
+Date: 2019-02-23
+Title: Collections of R Fortunes
+Authors@R: c(
+    person("Peng", "Zhao", role = c("aut", "cre"), email = "pzhao@pzhao.net")
+  )
+Maintainer: Peng Zhao <pzhao@pzhao.net>
+Imports: utils, cowsay, jsonlite
+License: GPL-2 | GPL-3
+Depends: R (>= 3.1.0)
+Suggests: knitr, rmarkdown
+Description: A collection of R fortunes.
+URL: https://github.com/cosname/sinx
+BugReports: https://github.com/cosname/sinx/issues
+RoxygenNote: 6.1.1
+NeedsCompilation: no
+LazyData: true
+VignetteBuilder: knitr
