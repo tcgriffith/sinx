@@ -5,8 +5,8 @@
 \title{Sling messages and warnings with flair}
 \usage{
 tanx(which = NULL, sinxs.data = NULL, what = "Hello world!", by = "random", 
-    copy = FALSE, type = "message", what_color = "steelblue3", by_color = NULL, 
-    length = 18, ...)
+    type = "message", what_color = "steelblue3", by_color = NULL, length = 18, 
+    ...)
 }
 \arguments{
 \item{which}{An integer specifying the row number of sinxs.data.
