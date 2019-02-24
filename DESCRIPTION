@@ -1,7 +1,7 @@
 Package: sinx
 Version: 0.0.6
 Date: 2019-02-24
-Title: Collections of R Fortunes in Chinese
+Title: Sayings in Chinese about R
 Authors@R: c(
     person("Peng", "Zhao", role = c("aut", "cre"), email = "pzhao@pzhao.net")
   )
@@ -10,9 +10,9 @@ Imports: utils, cowsay, jsonlite
 License: GPL-2 | GPL-3
 Depends: R (>= 3.1.0)
 Suggests: knitr, rmarkdown
-Description: A collection of R fortunes in Chinese. External fortunes are supported.
-URL: https://github.com/cosname/sinx
-BugReports: https://github.com/cosname/sinx/issues
+Description: A collection of R sayings in Chinese. External sayings are supported.
+URL: https://github.com/pzhaonet/sinx
+BugReports: https://github.com/pzhaonet/sinx/issues
 RoxygenNote: 6.1.1
 NeedsCompilation: no
 LazyData: true

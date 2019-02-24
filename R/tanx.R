@@ -1,4 +1,4 @@
-#' Sling messages and warnings with flair
+#' Talkings by ANimals
 #'
 #' @import cowsay
 #' @importFrom jsonlite fromJSON

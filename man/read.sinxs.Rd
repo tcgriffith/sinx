@@ -2,23 +2,23 @@
 % Please edit documentation in R/sinx.R
 \name{read.sinxs}
 \alias{read.sinxs}
-\title{Read R sinx fortunes.}
+\title{Read sayings from spread sheets.}
 \usage{
 read.sinxs(file = NULL, sep = ",")
 }
 \arguments{
-\item{file}{a character string giving a sinx fortune database in csv format (in UTF-8 encoding). By default all csv files in the data directory of the sinx package are used.}
+\item{file}{a character string giving a sinx sayings database in csv format (in UTF-8 encoding). By default all csv files in the data directory of the sinx package are used.}
 }
 \value{
-a data frame of fortunes, each row contains:
-- quote:	the quote, main part of the fortune,
+a data frame of sayings, each row contains:
+- quote:	the quote, main part of the sayings,
 - author: the author of the quote,
 - context: the context in which it was quoted (if available, otherwise NA),
 - source	: where it was quoted (if available, otherwise NA),
 - date:	when it was quoted (if available, otherwise NA).
 }
 \description{
-Read R sinx fortunes.
+Read sayings from spread sheets.
 }
 \examples{
 read.sinxs()

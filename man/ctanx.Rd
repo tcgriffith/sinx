@@ -2,7 +2,7 @@
 % Please edit documentation in R/sinx.R
 \name{ctanx}
 \alias{ctanx}
-\title{Show a sinx fortune when starting R}
+\title{Create TANX when starting R}
 \usage{
 ctanx(method = c("add", "remove"))
 }
@@ -13,7 +13,7 @@ ctanx(method = c("add", "remove"))
 a new ~/.Rprofile
 }
 \description{
-Show a sinx fortune when starting R
+Create TANX when starting R
 }
 \examples{
 ctanx()

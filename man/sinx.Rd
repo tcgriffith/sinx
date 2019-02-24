@@ -2,15 +2,15 @@
 % Please edit documentation in R/sinx.R
 \name{sinx}
 \alias{sinx}
-\title{Find R sinx fortunes.}
+\title{Sayings IN the R community.}
 \usage{
-sinx(which = NULL, sinxs.data = NULL, fixed = TRUE, showMatches = FALSE, 
-    author = character(), ...)
+sinx(which = NULL, sinxs.data = NULL, fixed = TRUE,
+  showMatches = FALSE, author = character(), ...)
 }
 \arguments{
 \item{which}{an integer specifying the row number of `sinxs.data`. Alternatively `which`` can be a character and `grep`` is used to try to find a suitable row.}
 
-\item{sinxs.data}{data frame containing a fortune in each row. By default the data from the 'sinx' package are used.}
+\item{sinxs.data}{data frame containing a saying in each row. By default the data from the 'sinx' package are used.}
 
 \item{fixed}{logical passed to `grep` if `which`` is a character, indicating if it should work (if `TRUE`, as by default) with a simple character string or (if `FALSE`) with regular expressions.}
 
@@ -21,18 +21,18 @@ sinx(which = NULL, sinxs.data = NULL, fixed = TRUE, showMatches = FALSE,
 \item{...}{potential further arguments passed to `grep`.}
 }
 \value{
-an object of class "sinx" which is a row from a data frame of fortunes (like those read in from read.sinxs).
+an object of class "sinx" which is a row from a data frame of sayings (like those read in from read.sinxs).
 }
 \description{
-Find R sinx fortunes.
+Sayings IN the R community.
 }
 \examples{
 sinx()
 
-for (i in 1:4) print(sinx(i))
+for(i in 1:4) print(sinx(i))
 
 path_f <- system.file("fortunes/fortunes.csv", package = "fortunes")
 path_s <- system.file("sinxs/sinxs.csv", package = "sinx")
-ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(";", ","))
+ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(';', ','))
 sinx::sinx(sinxs.data = ftns)
 }

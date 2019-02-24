@@ -1,9 +1,9 @@
-#' Read R sinx fortunes.
+#' Read sayings from spread sheets.
 #'
-#' @param file a character string giving a sinx fortune database in csv format (in UTF-8 encoding). By default all csv files in the data directory of the sinx package are used.
+#' @param file a character string giving a sinx sayings database in csv format (in UTF-8 encoding). By default all csv files in the data directory of the sinx package are used.
 #'
-#' @return a data frame of fortunes, each row contains:
-#' - quote:	the quote, main part of the fortune,
+#' @return a data frame of sayings, each row contains:
+#' - quote:	the quote, main part of the sayings,
 #' - author: the author of the quote,
 #' - context: the context in which it was quoted (if available, otherwise NA),
 #' - source	: where it was quoted (if available, otherwise NA),
@@ -47,16 +47,16 @@ read.sinxs <- function(file = NULL, sep = ','){
 
 sinxs.env <- new.env()
 
-#' Find R sinx fortunes.
+#' Sayings IN the R community.
 #'
 #' @param which an integer specifying the row number of `sinxs.data`. Alternatively `which`` can be a character and `grep`` is used to try to find a suitable row.
-#' @param sinxs.data data frame containing a fortune in each row. By default the data from the 'sinx' package are used.
+#' @param sinxs.data data frame containing a saying in each row. By default the data from the 'sinx' package are used.
 #' @param fixed logical passed to `grep` if `which`` is a character, indicating if it should work (if `TRUE`, as by default) with a simple character string or (if `FALSE`) with regular expressions.
 #' @param showMatches if `which` is character, a logical indicating if `sinx()` should print all the row numbers of `sinxs.data` which match the `grep` search.
 #' @param author a character string to match (via `grep`) to the "authors" column of `sinxs.data`.
 #' @param ... potential further arguments passed to `grep`.
 #'
-#' @return an object of class "sinx" which is a row from a data frame of fortunes (like those read in from read.sinxs).
+#' @return an object of class "sinx" which is a row from a data frame of sayings (like those read in from read.sinxs).
 #' @export
 #'
 #' @examples
@@ -104,7 +104,7 @@ sinx <- function(which = NULL, sinxs.data = NULL, fixed = TRUE,
   }
 }
 
-#' Print R sinx fortunes.
+#' Print R sinx sayings.
 #'
 #' @param x an object of class "sinx", usually a single row from `sinxs.data`.
 #' @param ... potential further arguments passed to `grep`.
@@ -153,7 +153,7 @@ print.sinx <- function(x, ...)
 }
 
 
-#' Show a sinx fortune when starting R
+#' Create TANX when starting R
 #'
 #' @param method (character) add or remove `sinx::tanx()` in ~/.Rprofile
 #'

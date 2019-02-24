@@ -2,7 +2,7 @@
 % Please edit documentation in R/sinx.R
 \name{print.sinx}
 \alias{print.sinx}
-\title{Print R sinx fortunes.}
+\title{Print R sinx sayings.}
 \usage{
 \method{print}{sinx}(x, ...)
 }
@@ -15,5 +15,5 @@
 print.
 }
 \description{
-Print R sinx fortunes.
+Print R sinx sayings.
 }

@@ -2,11 +2,11 @@
 % Please edit documentation in R/tanx.R
 \name{tanx}
 \alias{tanx}
-\title{Sling messages and warnings with flair}
+\title{Talkings by ANimals}
 \usage{
-tanx(which = NULL, sinxs.data = NULL, what = "Hello world!", by = "random", 
-    type = "message", what_color = "steelblue3", by_color = NULL, length = 18, 
-    ...)
+tanx(which = NULL, sinxs.data = NULL, what = "Hello world!",
+  by = "random", type = "message", what_color = "steelblue3",
+  by_color = NULL, length = 18, ...)
 }
 \arguments{
 \item{which}{An integer specifying the row number of sinxs.data.
@@ -47,7 +47,7 @@ or \href{https://github.com/r-lib/crayon#styles}{\code{crayon style function}} t
 \item{...}{Further args passed on to \code{\link[sinx]{sinx}}}
 }
 \description{
-Sling messages and warnings with flair
+Talkings by ANimals
 }
 \details{
 You can put in any phrase you like, OR you can type in one of a few
@@ -82,10 +82,10 @@ properly in R on Windows.
 \examples{
 tanx()
 
-for (i in 1:4) tanx(i)
+for(i in 1:4) tanx(i)
 
 path_f <- system.file("fortunes/fortunes.csv", package = "fortunes")
 path_s <- system.file("sinxs/sinxs.csv", package = "sinx")
-ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(";", ","))
+ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(';', ','))
 sinx::tanx(sinxs.data = ftns)
 }
