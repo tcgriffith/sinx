@@ -29,7 +29,7 @@ Find R sinx fortunes.
 \examples{
 sinx()
 
-for (i in 1:4) sinx(i)
+for (i in 1:4) print(sinx(i))
 
 path_f <- system.file("fortunes/fortunes.csv", package = "fortunes")
 path_s <- system.file("sinxs/sinxs.csv", package = "sinx")

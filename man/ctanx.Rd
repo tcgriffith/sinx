@@ -4,10 +4,13 @@
 \alias{ctanx}
 \title{Show a sinx fortune when starting R}
 \usage{
-ctanx()
+ctanx(method = c("add", "remove"))
+}
+\arguments{
+\item{method}{(character) add or remove `sinx::tanx()` in ~/.Rprofile}
 }
 \value{
-add sinx to ~/.Rprofile
+a new ~/.Rprofile
 }
 \description{
 Show a sinx fortune when starting R

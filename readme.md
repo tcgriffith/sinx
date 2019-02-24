@@ -25,7 +25,7 @@ ctanx() #  往 ~/.Rprofile 里添加一条代码，在 R 启动时随机显示�
 read.sinxs() # 读取语录文件
 vignette('sinx') # 语录合集
 ```
-详见各函数的帮助信息。
+详见各函数的帮助信息，或[在线文档](https://www.pzhao.org/pkg/sinx/)。。
 
 例如，我经常需要用下面这一条语录来回答论坛上的提问：
 

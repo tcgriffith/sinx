@@ -155,16 +155,26 @@ print.sinx <- function(x, ...)
 
 #' Show a sinx fortune when starting R
 #'
-#' @return add sinx to ~/.Rprofile
+#' @param method (character) add or remove `sinx::tanx()` in ~/.Rprofile
+#'
+#' @return a new ~/.Rprofile
 #' @export
 #'
 #' @examples
 #' ctanx()
-ctanx <- function(){
+ctanx <- function(method = c('add', 'remove')){
+  method <- match.arg(method)
   homedir <- Sys.getenv('HOME')
   newcode <- 'sinx::tanx()'
   newfile <- file.path(homedir, '.Rprofile')
-  write(newcode, newfile, append = T)
+  if(method == 'add') write(newcode, newfile, append = T)
+  if(method == 'remove'){
+    if(file.exists(newfile)){
+      oldtext <- readLines(newfile, encoding = 'UTF-8')
+      newtext <- gsub('^sinx::tanx\\(\\)$', '', oldtext)
+      writeLines(newtext, newfile, useBytes = TRUE)
+    }
+  }
 }
 
 merge_text <- function(sinxs.data = NULL, method = c('console', 'vig')){

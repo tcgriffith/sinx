@@ -8,8 +8,11 @@ vignette: >
 ---
 
 ```{r, echo=FALSE, results='hide'}
-old_loc <- Sys.getlocale("LC_CTYPE")
-Sys.setlocale("LC_CTYPE","Chinese")
+os <- Sys.info()['sysname']
+if(os == 'Windows') {
+  old_loc <- Sys.getlocale("LC_CTYPE")
+  Sys.setlocale("LC_CTYPE","Chinese")
+}
 library("sinx")
 library("utils")
 f <- sinx:::merge_text(method = 'vig')
@@ -21,6 +24,8 @@ cat(f$vig, sep = '\n\n\n\n')
 
 
 ```{r, echo=FALSE, results='hide'}
-Sys.setlocale("LC_CTYPE",old_loc)
+if(os == 'Windows') {
+  Sys.setlocale("LC_CTYPE",old_loc)
+}
 ```
 

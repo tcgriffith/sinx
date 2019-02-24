@@ -73,6 +73,7 @@
 #' ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(';', ','))
 #' sinx::tanx(sinxs.data = ftns)
 tanx <- function(which=NULL, sinxs.data= NULL, what="Hello world!", by="random",
+                 copy = FALSE,
                 type="message",
                 what_color='steelblue3', by_color=NULL,
                 length=18, ...) {
