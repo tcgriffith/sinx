@@ -4,8 +4,8 @@
 \alias{sinx}
 \title{Sayings IN the R community.}
 \usage{
-sinx(which = NULL, sinxs.data = NULL, fixed = TRUE,
-  showMatches = FALSE, author = character(), ...)
+sinx(which = NULL, sinxs.data = NULL, fixed = TRUE, showMatches = FALSE, 
+    author = character(), ...)
 }
 \arguments{
 \item{which}{an integer specifying the row number of `sinxs.data`. Alternatively `which`` can be a character and `grep`` is used to try to find a suitable row.}
@@ -29,10 +29,13 @@ Sayings IN the R community.
 \examples{
 sinx()
 
-for(i in 1:4) print(sinx(i))
+for (i in 1:4) print(sinx(i))
+
+jinyong <- read.sinxs(lib = "jinyong")
+sinx(sinxs.data = jinyong)
 
 path_f <- system.file("fortunes/fortunes.csv", package = "fortunes")
 path_s <- system.file("sinxs/sinxs.csv", package = "sinx")
-ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(';', ','))
+ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(";", ","))
 sinx::sinx(sinxs.data = ftns)
 }

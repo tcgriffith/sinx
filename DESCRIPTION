@@ -1,6 +1,6 @@
 Package: sinx
-Version: 0.0.6
-Date: 2019-02-24
+Version: 0.0.7
+Date: 2019-02-25
 Title: Sayings in Chinese about R
 Authors@R: c(
     person("Peng", "Zhao", role = c("aut", "cre"), email = "pzhao@pzhao.net")

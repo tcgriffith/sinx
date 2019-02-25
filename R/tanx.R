@@ -68,6 +68,9 @@
 #'
 #' for(i in 1:4) tanx(i)
 #'
+#' jinyong <- read.sinxs(lib = 'jinyong')
+#' tanx(sinxs.data = jinyong)
+#'
 #' path_f <- system.file("fortunes/fortunes.csv", package = "fortunes")
 #' path_s <- system.file("sinxs/sinxs.csv", package = "sinx")
 #' ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(';', ','))

@@ -4,10 +4,12 @@
 \alias{ctanx}
 \title{Create TANX when starting R}
 \usage{
-ctanx(method = c("add", "remove"))
+ctanx(method = c("add", "remove"), lib = "sinxs")
 }
 \arguments{
 \item{method}{(character) add or remove `sinx::tanx()` in ~/.Rprofile}
+
+\item{lib}{library name of the sayings.See `?read.sinxs()`.}
 }
 \value{
 a new ~/.Rprofile
@@ -17,4 +19,5 @@ Create TANX when starting R
 }
 \examples{
 ctanx()
+ctanx(lib = "jinyong")
 }
