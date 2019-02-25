@@ -2,7 +2,7 @@
 
 ## 简介
 
-sinx 包是个中文语录集，素材主要来自[统计之都](http://d.cosx.org)，未来也不排除采集其他来源的语录。欢迎大家贡献精彩语录。直接 PR 到[项目主页 ](https://github.com/pzhaonet/sinx/blob/master/inst/sinxs/sinxs.csv) 即可。
+sinx 包是个语录集，默认素材主要来自[统计之都](http://d.cosx.org)，附送唐诗、宋诗、金庸语录、中文名言、英文名言、养生语录……未来也不排除采集其他来源的语录。欢迎大家贡献精彩语录。直接 PR 到[项目主页 ](https://github.com/pzhaonet/sinx/blob/master/inst/sinxs) 即可。
 
 相关链接：[缘起](https://d.cosx.org/d/7673/156)，[讨论](https://d.cosx.org/d/420467)。
 
@@ -42,13 +42,11 @@ sinx::sinx(1)
 ##       d.cosx.org (2018 年 12 月)
 ```
 
-需要多说一下的是，语录文件是可以随意扩展的，只需用 `read.sinxs()` 一次读入多个文件即可。下面这个例子，将 fortunes 包里的语录合并进来，一起显示：
+需要多说一下的是，语录文件是可以随意扩展的，只需用 `read.sinxs()` 一次读入多个文件即可。下面这个例子，将所有自带语录合并进来，随机显示：
 
 ```
-path_f <- system.file("fortunes/fortunes.csv", package = "fortunes")
-path_s <- system.file("sinxs/sinxs.csv", package = "sinx")
-ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(";", ","))
-sinx::tanx(sinxs.data = ftns)
+libs <- read.sinxs(lib = c("tangshi", "songshi", "chinese", "yangsheng", "english","jinyong"))
+tanx(sinxs.data = libs)
 ```
 
 # License

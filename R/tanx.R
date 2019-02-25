@@ -1,4 +1,4 @@
-#' Talkings by ANimals
+#' TAlked by SiNo Xmen's Pets
 #'
 #' @import cowsay
 #' @importFrom jsonlite fromJSON
@@ -68,13 +68,16 @@
 #'
 #' for(i in 1:4) tanx(i)
 #'
-#' jinyong <- read.sinxs(lib = 'jinyong')
-#' tanx(sinxs.data = jinyong)
-#'
 #' path_f <- system.file("fortunes/fortunes.csv", package = "fortunes")
 #' path_s <- system.file("sinxs/sinxs.csv", package = "sinx")
 #' ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(';', ','))
 #' sinx::tanx(sinxs.data = ftns)
+#'
+#' jinyong <- read.sinxs(lib = 'jinyong')
+#' tanx(sinxs.data = jinyong)
+#'
+#'libs <- read.sinxs(lib = c("tangshi", "songshi", "chinese", "yangsheng", "english","jinyong"))
+#'tanx(42, sinxs.data = libs)
 tanx <- function(which=NULL, sinxs.data= NULL, what="Hello world!", by="random",
                 type="message",
                 what_color='steelblue3', by_color=NULL,

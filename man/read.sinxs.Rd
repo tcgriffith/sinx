@@ -30,6 +30,13 @@ a data frame of sayings, each row contains:
 Read sayings from spread sheets.
 }
 \examples{
-read.sinxs()
-read.sinxs(lib = "jinyong")
+libs <- read.sinxs()
+
+libs <- read.sinxs(lib = 'jinyong')
+
+libs <- read.sinxs(lib = c("tangshi", "songshi", "chinese", "yangsheng", "english","jinyong"))
+
+path_f <- system.file("fortunes/fortunes.csv", package = "fortunes")
+path_s <- system.file("sinxs/sinxs.csv", package = "sinx")
+libs <- sinx::read.sinxs(c(path_f, path_s), sep = c(";", ","))
 }

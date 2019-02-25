@@ -20,10 +20,18 @@
 #' @export
 #'
 #' @examples
-#' read.sinxs()
-#' read.sinxs(lib = 'jinyong')
-
-read.sinxs <- function(file = NULL, sep = ',', lib = 'sinxs') {
+#' libs <- read.sinxs()
+#'
+#' libs <- read.sinxs(lib = 'jinyong')
+#'
+#' libs <- read.sinxs(lib = c("tangshi", "songshi", "chinese", "yangsheng", "english","jinyong"))
+#'
+#' path_f <- system.file("fortunes/fortunes.csv", package = "fortunes")
+#' path_s <- system.file("sinxs/sinxs.csv", package = "sinx")
+#' libs <- sinx::read.sinxs(c(path_f, path_s), sep = c(";", ","))
+read.sinxs <- function(file = NULL,
+                       sep = ',',
+                       lib = 'sinxs') {
   os <- Sys.info()['sysname']
   if (os == 'Windows') {
     old_loc <- Sys.getlocale("LC_CTYPE")
@@ -33,7 +41,8 @@ read.sinxs <- function(file = NULL, sep = ',', lib = 'sinxs') {
   if (!is.null(file)) {
     sinxs <- file[file.exists(file)]
   } else {
-    myfile <- system.file("sinxs", paste0(lib, '.csv'), package = "sinx")
+    myfile <-
+      system.file("sinxs", paste0(lib, '.csv'), package = "sinx")
     sinxs <- myfile
     # if (!is.null(file) && file.exists(file.path(path, file))) {
     #   sinxs <- file.path(path, file)
@@ -41,9 +50,9 @@ read.sinxs <- function(file = NULL, sep = ',', lib = 'sinxs') {
     #   if (length(file) > 0L)
     #     stop("sorry, ", sQuote(file), " not found")
     #   file <- datafiles[grep("\\.csv$", datafiles)]
-      # if (length(file) == 0L)
-      #   stop("sorry, no sinxs data found")
-      # sinxs <- file.path(path, file)
+    # if (length(file) == 0L)
+    #   stop("sorry, no sinxs data found")
+    # sinxs <- file.path(path, file)
     # }
   }
 
@@ -69,7 +78,7 @@ read.sinxs <- function(file = NULL, sep = ',', lib = 'sinxs') {
 
 sinxs.env <- new.env()
 
-#' Sayings IN the R community.
+#' Sino Xmen IN the R community.
 #'
 #' @param which an integer specifying the row number of `sinxs.data`. Alternatively `which`` can be a character and `grep`` is used to try to find a suitable row.
 #' @param sinxs.data data frame containing a saying in each row. By default the data from the 'sinx' package are used.
@@ -86,13 +95,17 @@ sinxs.env <- new.env()
 #'
 #' for(i in 1:4) print(sinx(i))
 #'
-#' jinyong <- read.sinxs(lib = 'jinyong')
-#' sinx(sinxs.data = jinyong)
-#'
 #' path_f <- system.file("fortunes/fortunes.csv", package = "fortunes")
 #' path_s <- system.file("sinxs/sinxs.csv", package = "sinx")
 #' ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(';', ','))
 #' sinx::sinx(sinxs.data = ftns)
+#'
+#' jinyong <- read.sinxs(lib = 'jinyong')
+#' sinx(sinxs.data = jinyong)
+#'
+#'libs <- read.sinxs(lib = c("tangshi", "songshi", "chinese", "yangsheng", "english","jinyong"))
+#'sinx(sinxs.data = libs)
+
 sinx <- function(which = NULL,
                  sinxs.data = NULL,
                  fixed = TRUE,
@@ -117,7 +130,7 @@ sinx <- function(which = NULL,
           sinxs.data[grep(author,
                           fd.auth,
                           useBytes = TRUE,
-                          fixed = fixed),]
+                          fixed = fixed), ]
       }
     }
     if (is.character(which)) {
@@ -143,7 +156,7 @@ sinx <- function(which = NULL,
   }
   if (length(which) > 0 &&
       which %in% seq(along = rownames(sinxs.data))) {
-    structure(sinxs.data[which,], class = "sinx")
+    structure(sinxs.data[which, ], class = "sinx")
   } else {
     character(0)
   }
@@ -173,6 +186,8 @@ print.sinx <- function(x, ...)
       ""
   else
     x$date <- paste(" (", x$date, ")", sep = "")
+  if (is.na(x$author) | x$author == '')
+    x$author <- "unkown"
   if (anyNA(x))
     stop("'quote' and 'author' are required")
 
@@ -219,10 +234,13 @@ print.sinx <- function(x, ...)
 #' @examples
 #' ctanx()
 #' ctanx(lib = 'jinyong')
-ctanx <- function(method = c('add', 'remove'), lib = 'sinxs') {
+#' ctanx('remove')
+ctanx <- function(method = c('add', 'remove'),
+                  lib = 'sinxs') {
   method <- match.arg(method)
   homedir <- Sys.getenv('HOME')
-  newcode <- paste0('sinx::tanx(sinxs.data = read.sinxs(lib = "', lib, '"))')
+  newcode <-
+    paste0('sinx::tanx(sinxs.data = sinx::read.sinxs(lib = "', lib, '"))')
   newfile <- file.path(homedir, '.Rprofile')
   if (method == 'add')
     write(newcode, newfile, append = T)
@@ -253,39 +271,50 @@ merge_text <-
     }
     n <- nrow(sinxs.data)
     sinxs.data$n <- 1:n
-    if (method == 'vig')
+
+    sinxs.data$context <- ifelse(sinxs.data$context != '',
+                                 paste0(' (', sinxs.data$context, ')'),
+                                 '')
+    sinxs.data$source <- ifelse(sinxs.data$source != '',
+                              paste0(', ', sinxs.data$source),
+                              '')
+    sinxs.data$date <- ifelse(sinxs.data$date != '',
+                              paste0(', ', sinxs.data$date),
+                              '')
+    if (method == 'vig') {
+      sinxs.data$sep <-
+        apply(sinxs.data[, c('author', 'context', 'source', 'date')], 1, function(x)
+          ifelse(any(unlist(x) != ''), '\n\n--- ', ''))
       sinxs.data$vig <-
-      paste(
-        paste0('### ', sinxs.data$n),
-        sinxs.data$quote,
-        paste0(
-          '\n\n--- ',
-          sinxs.data$author,
-          ' (',
-          sinxs.data$context,
-          '), ',
-          sinxs.data$source,
-          ', ',
-          sinxs.data$date
-        ),
-        sep = '\n\n'
-      )
-    if (method == 'console')
+        paste(
+          paste0('### ', sinxs.data$n),
+          sinxs.data$quote,
+          paste0(
+            sinxs.data$sep,
+            sinxs.data$author,
+            sinxs.data$context,
+            sinxs.data$source,
+            sinxs.data$date
+          ),
+          sep = '\n\n'
+        )
+    }
+    if (method == 'console') {
+      sinxs.data$sep <-
+        apply(sinxs.data[, c('author', 'context', 'source', 'date')], 1, function(x)
+          ifelse(any(unlist(x) != ''), '\n--- ', ''))
       sinxs.data$vig <-
-      paste(
-        sinxs.data$quote,
-        paste0(
-          '\n--- ',
-          sinxs.data$author,
-          ' (',
-          sinxs.data$context,
-          '), ',
-          sinxs.data$source,
-          ', ',
-          sinxs.data$date
-        ),
-        sep = '\n'
-      )
+        paste(
+          sinxs.data$quote,
+          paste0(
+            sinxs.data$sep,
+            sinxs.data$author,
+            sinxs.data$context,
+            sinxs.data$source,
+            sinxs.data$date
+          ),
+          sep = '\n'
+        )
+    }
     return(sinxs.data)
   }
-

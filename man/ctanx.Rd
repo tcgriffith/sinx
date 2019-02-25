@@ -19,5 +19,6 @@ Create TANX when starting R
 }
 \examples{
 ctanx()
-ctanx(lib = "jinyong")
+ctanx(lib = 'jinyong')
+ctanx('remove')
 }

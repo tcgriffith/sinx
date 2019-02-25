@@ -2,10 +2,10 @@
 % Please edit documentation in R/sinx.R
 \name{sinx}
 \alias{sinx}
-\title{Sayings IN the R community.}
+\title{Sino Xmen IN the R community.}
 \usage{
-sinx(which = NULL, sinxs.data = NULL, fixed = TRUE, showMatches = FALSE, 
-    author = character(), ...)
+sinx(which = NULL, sinxs.data = NULL, fixed = TRUE,
+  showMatches = FALSE, author = character(), ...)
 }
 \arguments{
 \item{which}{an integer specifying the row number of `sinxs.data`. Alternatively `which`` can be a character and `grep`` is used to try to find a suitable row.}
@@ -24,18 +24,21 @@ sinx(which = NULL, sinxs.data = NULL, fixed = TRUE, showMatches = FALSE,
 an object of class "sinx" which is a row from a data frame of sayings (like those read in from read.sinxs).
 }
 \description{
-Sayings IN the R community.
+Sino Xmen IN the R community.
 }
 \examples{
 sinx()
 
-for (i in 1:4) print(sinx(i))
-
-jinyong <- read.sinxs(lib = "jinyong")
-sinx(sinxs.data = jinyong)
+for(i in 1:4) print(sinx(i))
 
 path_f <- system.file("fortunes/fortunes.csv", package = "fortunes")
 path_s <- system.file("sinxs/sinxs.csv", package = "sinx")
-ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(";", ","))
+ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(';', ','))
 sinx::sinx(sinxs.data = ftns)
+
+jinyong <- read.sinxs(lib = 'jinyong')
+sinx(sinxs.data = jinyong)
+
+libs <- read.sinxs(lib = c("tangshi", "songshi", "chinese", "yangsheng", "english","jinyong"))
+sinx(sinxs.data = libs)
 }
