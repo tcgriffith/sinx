@@ -1,12 +1,12 @@
 Package: sinx
 Version: 0.0.8
 Date: 2019-02-25
-Title: Sino Xmen's Sayings
+Title: Sino Xmen Said
 Authors@R: c(
     person("Peng", "Zhao", role = c("aut", "cre"), email = "pzhao@pzhao.net")
   )
 Maintainer: Peng Zhao <pzhao@pzhao.net>
-Imports: utils, cowsay, jsonlite, xaringan, pagedown
+Imports: utils, cowsay, jsonlite, xaringan, pagedown, bookdownplus
 License: GPL-2 | GPL-3
 Depends: R (>= 3.1.0)
 Suggests: knitr, rmarkdown

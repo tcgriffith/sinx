@@ -2,31 +2,38 @@
 % Please edit documentation in R/secx.R
 \name{secx}
 \alias{secx}
-\title{Create a pagedown book from a sinx library}
+\title{Create a book/slides from a sinx library}
 \usage{
-secx(lib = "tangshi", title = "A Pagedown Book", editor = "dapeng", section = "author", 
-    subsection = "context", file = NULL, if_render = TRUE)
+secx(lib = "tangshi", file = NULL, title = "A Sinx Book", author = "dapeng", 
+    section = "author", subsection = "context", style = c("pagedown", "bookdown", 
+        "xaringan"), bookdown_template = "demo_zh", to = "sinx_book", if_render = TRUE)
 }
 \arguments{
 \item{lib}{library name of the sayings. See `?read.sinxs`.}
 
+\item{file}{file name of source spread sheet. See '?read.sinxs()'.}
+
 \item{title}{title of the book}
 
-\item{editor}{editor name}
+\item{author}{author's name}
 
 \item{section}{name of a sinx libary column, in which the characters are the sections in the book}
 
 \item{subsection}{name of a sinx libary column, in which the characters are the subsections in the book}
 
-\item{file}{file name of the book. Without extension.}
+\item{style}{'pagedown' or 'bookdown' or 'xaringan'}
+
+\item{to}{the book directory.}
 
 \item{if_render}{if render the book}
+
+\item{template}{template name. only valid when the style is 'bookdown'. See '?bookdownplus'.}
 }
 \value{
 a book
 }
 \description{
-Create a pagedown book from a sinx library
+Create a book/slides from a sinx library
 }
 \examples{
 \dontrun{
