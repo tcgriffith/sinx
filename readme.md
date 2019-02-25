@@ -21,6 +21,7 @@ remotes::install_github('pzhaonet/sinx', build = TRUE,
 ```
 sinx() # 打印一条语录
 tanx()  # 小猫小狗说语录
+secx() # 把语录做成一本电子书
 ctanx() #  往 ~/.Rprofile 里添加一条代码，在 R 启动时随机显示一条语录
 read.sinxs() # 读取语录文件
 vignette('sinx') # 语录合集
@@ -56,4 +57,4 @@ Copyright [Peng Zhao](http://pzhao.org).
 Released under the GPL-3 license.
 
 
-![](https://github.com/pzhaonet/sinx/raw/master/static/img/logo-sinx1.png)
+![](https://github.com/pzhaonet/sinx/raw/master/img/logo-sinx1.png)
