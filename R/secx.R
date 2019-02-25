@@ -20,10 +20,13 @@
 #' }
 secx <- function(lib = 'tangshi', title = 'A Pagedown Book', editor = 'dapeng', section = 'author', subsection = 'context', file = NULL, if_render = TRUE){
   body_df <- read.sinxs(lib =lib, file = file)
-  body_df <- body_df[order(body_df[, section]),]
+  body_df$section_subsection <- paste(body_df[, section], body_df[, subsection], sep = '_')
+  body_df <- body_df[order(body_df$section_subsection),]
+
   body_df[, section][duplicated(body_df[, section])] <- ''
+  body_df[, subsection][duplicated(body_df$section_subsection)] <- ''
   body_df$section <- ifelse(body_df[, section] == '', '\n', paste('# ', body_df[, section]))
-  body_df$subsection <- paste('## ', body_df[, subsection])
+  body_df$subsection <- ifelse(body_df[, subsection] == '', '\n---\n', paste('## ', body_df[, subsection]))
   rmd_body <- paste(body_df$section, body_df$subsection, body_df$quote, sep = '\n\n', collapse = '\n\n')
   rmd_body <- strsplit(rmd_body, '\\\\n')[[1]]
   rmd_body2 <- rep('', length(rmd_body) * 2)

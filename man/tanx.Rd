@@ -4,9 +4,9 @@
 \alias{tanx}
 \title{TAlked by SiNo Xmen's Pets}
 \usage{
-tanx(which = NULL, sinxs.data = NULL, what = "Hello world!",
-  by = "random", type = "message", what_color = "steelblue3",
-  by_color = NULL, length = 18, ...)
+tanx(which = NULL, sinxs.data = NULL, what = "Hello world!", by = "random", 
+    type = "message", what_color = "steelblue3", by_color = NULL, length = 18, 
+    ...)
 }
 \arguments{
 \item{which}{An integer specifying the row number of sinxs.data.
@@ -82,16 +82,17 @@ properly in R on Windows.
 \examples{
 tanx()
 
-for(i in 1:4) tanx(i)
+for (i in 1:4) tanx(i)
 
 path_f <- system.file("fortunes/fortunes.csv", package = "fortunes")
 path_s <- system.file("sinxs/sinxs.csv", package = "sinx")
-ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(';', ','))
+ftns <- sinx::read.sinxs(c(path_f, path_s), sep = c(";", ","))
 sinx::tanx(sinxs.data = ftns)
 
-jinyong <- read.sinxs(lib = 'jinyong')
+jinyong <- read.sinxs(lib = "jinyong")
 tanx(sinxs.data = jinyong)
 
-libs <- read.sinxs(lib = c("tangshi", "songshi", "chinese", "yangsheng", "english","jinyong"))
+libs <- read.sinxs(lib = c("tangshi", "songshi", "chinese", "yangsheng", "english", 
+    "jinyong"))
 tanx(42, sinxs.data = libs)
 }

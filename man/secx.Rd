@@ -4,9 +4,8 @@
 \alias{secx}
 \title{Create a pagedown book from a sinx library}
 \usage{
-secx(lib = "tangshi", title = "A Pagedown Book", editor = "dapeng",
-  section = "author", subsection = "context", file = NULL,
-  if_render = TRUE)
+secx(lib = "tangshi", title = "A Pagedown Book", editor = "dapeng", section = "author", 
+    subsection = "context", file = NULL, if_render = TRUE)
 }
 \arguments{
 \item{lib}{library name of the sayings. See `?read.sinxs`.}
@@ -33,6 +32,6 @@ Create a pagedown book from a sinx library
 \dontrun{
 secx()
 
-secx(lib = 'sinxs', title = 'cosx', subsection = 'date')
+secx(lib = "sinxs", title = "cosx", subsection = "date")
 }
 }
