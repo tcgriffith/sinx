@@ -42,7 +42,7 @@ sinx::sinx(1)
 ##       d.cosx.org (2018 年 12 月)
 ```
 
-需要多说一下的是，语录文件是可以随意扩展的，只需用 `read.sinxs()` 一次读入多个文件即可。下面这个例子，将所有自带语录合并进来，随机显示：
+值得一提的是，语录文件是可以随意扩展的，只需用 `read.sinxs()` 一次读入多个文件即可。下面这个例子，将所有自带语录合并进来，随机显示：
 
 ```
 libs <- read.sinxs(lib = c("tangshi", "songshi", "chinese", "yangsheng", "english","jinyong"))
@@ -55,3 +55,5 @@ Copyright [Peng Zhao](http://pzhao.org).
 
 Released under the GPL-3 license.
 
+
+![](https://github.com/pzhaonet/sinx/raw/master/static/img/logo-sinx1.png)
