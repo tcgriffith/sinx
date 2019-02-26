@@ -37,42 +37,43 @@ read.sinxs <- function(file = NULL,
   if (os == 'Windows') {
     old_loc <- Sys.getlocale("LC_CTYPE")
     on.exit(Sys.setlocale("LC_CTYPE", old_loc))
-    Sys.setlocale("LC_CTYPE", "English")
+    # Sys.setlocale("LC_CTYPE", "English")
   }
   if (!is.null(file)) {
     sinxs <- file[file.exists(file)]
   } else {
-    myfile <-
-      system.file("sinxs", paste0(lib, '.csv'), package = "sinx")
-    sinxs <- myfile
-    # if (!is.null(file) && file.exists(file.path(path, file))) {
-    #   sinxs <- file.path(path, file)
-    # } else {
-    #   if (length(file) > 0L)
-    #     stop("sorry, ", sQuote(file), " not found")
-    #   file <- datafiles[grep("\\.csv$", datafiles)]
-    # if (length(file) == 0L)
-    #   stop("sorry, no sinxs data found")
-    # sinxs <- file.path(path, file)
-    # }
+    sep <- ','
+    allfiles <- dir(system.file("sinxs", package = "sinx"))
+    firstname <- gsub('\\.csv|\\.md', '', allfiles)
+    lastname <- gsub('.*(\\.csv|\\.md)$', '\\1', allfiles)
+    loc <- firstname %in% lib
+    sinxs <-
+      system.file("sinxs", paste0(firstname[loc], lastname[loc]), package = "sinx")
   }
 
   rval <- NULL
   nfile <- length(sinxs)
   sep <- rep_len(sep, nfile)
   for (i in 1:nfile) {
-    rval <-
-      rbind(
-        rval,
-        read.table(
-          sinxs[i],
-          header = TRUE,
-          sep = sep[i],
-          quote = "\"",
-          colClasses = "character",
-          encoding = 'UTF-8'
-        )
+    afile <- sinxs[i]
+    atable <- NULL
+    if(grepl('\\.csv$', afile)){
+      if (os == 'Windows')
+        Sys.setlocale("LC_CTYPE", "English")
+      atable <- read.table(
+        sinxs[i],
+        header = TRUE,
+        sep = sep[i],
+        quote = "\"",
+        colClasses = "character",
+        encoding = 'UTF-8'
       )
+      Sys.setlocale("LC_CTYPE", old_loc)
+    }
+
+    if(grepl('\\.md$', afile))
+      atable <- md2df(sinxs[i])
+    rval <- rbind(rval,atable)
   }
   rval
 }
@@ -190,7 +191,7 @@ print.sinx <- function(x, ...)
   if (is.na(x$author) | x$author == '')
     x$author <- "unkown"
   if (anyNA(x))
-    stop("'quote' and 'author' are required")
+    stop("'quote' is required")
 
   line1 <- x$quote
   line2 <- paste("   -- ", x$author, x$context, sep = "")
@@ -211,10 +212,10 @@ print.sinx <- function(x, ...)
   #   paste(rval, line, sep = "")
   # }
 
-  line1 <- strsplit(line1, "\\\\n")[[1]]
+  # line1 <- strsplit(line1, "\\\\n")[[1]]
   # for(i in 1:length(line1))
   #   line1[i] <- linesplit(line1[i], width, gap = "")
-  line1 <- paste(line1, collapse = "\n")
+  # line1 <- paste(line1, collapse = "\n")
   # line2 <- linesplit(line2, width)
   # line3 <- linesplit(line3, width)
 
@@ -259,8 +260,7 @@ merge_text <-
            method = c('console', 'vig')) {
     method <- match.arg(method)
     if (is.null(sinxs.data)) {
-      sinxfile <- system.file("sinxs", "sinxs.csv", package = "sinx")
-      sinxs.data <- read.sinxs(sinxfile)
+      sinxs.data <- read.sinxs(lib = 'sinxs')
     }
     sinxs.data$quote <- gsub('\\\\n', '\n',  sinxs.data$quote)
 
