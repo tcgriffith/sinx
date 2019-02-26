@@ -9,6 +9,7 @@
 #' - 'chinese'
 #' - 'english'
 #' - 'jinyong'
+#' @param sep seperator of the columns. See '?read.table()'.
 #'
 #' @return a data frame of sayings, each row contains:
 #' - quote:	the quote, main part of the sayings,

@@ -50,6 +50,13 @@ libs <- read.sinxs(lib = c("tangshi", "songshi", "chinese", "yangsheng", "englis
 tanx(sinxs.data = libs)
 ```
 
+# To do
+
+- 允许用户以段落格式贡献语录
+
+- quiz
+
+
 # License
 
 Copyright [Peng Zhao](http://pzhao.org).

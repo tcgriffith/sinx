@@ -9,6 +9,8 @@ read.sinxs(file = NULL, sep = ",", lib = "sinxs")
 \arguments{
 \item{file}{a character string giving a sinx sayings database in csv format (in UTF-8 encoding). By default all csv files in the data directory of the sinx package are used.}
 
+\item{sep}{seperator of the columns. See '?read.table()'.}
+
 \item{lib}{library name of the sayings.
 - 'sinxs': (default) from cosx.org
 - 'tangshi'

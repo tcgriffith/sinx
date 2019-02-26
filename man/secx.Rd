@@ -23,11 +23,11 @@ secx(lib = "tangshi", file = NULL, title = "A Sinx Book", author = "dapeng",
 
 \item{style}{'pagedown' or 'bookdown' or 'xaringan'}
 
+\item{bookdown_template}{template name. only valid when the style is 'bookdown'. See '?bookdownplus'.}
+
 \item{to}{the book directory.}
 
 \item{if_render}{if render the book}
-
-\item{template}{template name. only valid when the style is 'bookdown'. See '?bookdownplus'.}
 }
 \value{
 a book

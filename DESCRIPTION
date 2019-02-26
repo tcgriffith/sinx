@@ -1,6 +1,6 @@
 Package: sinx
-Version: 0.0.8
-Date: 2019-02-25
+Version: 0.0.9
+Date: 2019-02-26
 Title: Sino Xmen Said
 Authors@R: c(
     person("Peng", "Zhao", role = c("aut", "cre"), email = "pzhao@pzhao.net")

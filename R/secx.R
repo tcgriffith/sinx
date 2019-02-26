@@ -8,7 +8,7 @@
 #' @param file file name of source spread sheet. See '?read.sinxs()'.
 #' @param if_render if render the book
 #' @param style 'pagedown' or 'bookdown' or 'xaringan'
-#' @param template template name. only valid when the style is 'bookdown'. See '?bookdownplus'.
+#' @param bookdown_template template name. only valid when the style is 'bookdown'. See '?bookdownplus'.
 #' @param to the book directory.
 #'
 #' @return a book

@@ -13,6 +13,8 @@ tanx(which = NULL, sinxs.data = NULL, what = "Hello world!", by = "random",
 Alternatively which can be a character and grep is used to try to find a
 suitable row.}
 
+\item{sinxs.data}{data frame containing a saying in each row. By default the data from the 'sinx' package are used.}
+
 \item{what}{(character) What do you want to say? See details.}
 
 \item{by}{(character) Type of thing, one of cow, chicken, poop, cat, facecat,
