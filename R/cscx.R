@@ -1,6 +1,7 @@
 #' Create a Skeleton in a Clipboard for a new sinX
 #'
 #' @return a skeleton text in the clipboard
+#' @import rosr
 #' @export
 #'
 #' @examples
@@ -27,7 +28,8 @@ get_entry <- function(x) {
     loc <- grep(paste0('^', i, ':'), x)
     txt <- gsub(paste0('^', i, ':(.*)'), '\\1', x[loc])
     x <- x[-loc]
-    txt <- rosr:::rm_space(txt)
+    rm_space <- 'rosr' %:::% 'rm_space'
+    txt <- rm_space(txt)
     entry <- c(entry, txt)
   }
   # merge the rest

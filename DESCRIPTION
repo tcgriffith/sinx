@@ -1,16 +1,16 @@
 Package: sinx
-Version: 0.0.10
-Date: 2019-02-26
+Version: 0.0.10-1
+Date: 2019-02-28
 Title: Sino Xmen Said
 Authors@R: c(
     person("Peng", "Zhao", role = c("aut", "cre"), email = "pzhao@pzhao.net")
   )
 Maintainer: Peng Zhao <pzhao@pzhao.net>
-Imports: utils, cowsay, jsonlite, xaringan, pagedown, bookdownplus
-License: GPL-2 | GPL-3
+Imports: utils, cowsay, jsonlite, xaringan, pagedown, bookdownplus, rosr, crayon, multicolor, rmsfact
+License: GPL-3 | file LICENSE
 Depends: R (>= 3.1.0)
 Suggests: knitr, rmarkdown
-Description: A collection of R sayings in Chinese. External sayings are supported.
+Description: A collection of fortunes in Chinese from the R community.
 URL: https://github.com/pzhaonet/sinx
 BugReports: https://github.com/pzhaonet/sinx/issues
 RoxygenNote: 6.1.1

@@ -73,8 +73,9 @@ read.sinxs <- function(file = NULL,
 
     if(grepl('\\.md$', afile))
       atable <- md2df(sinxs[i])
-    rval <- rbind(rval,atable)
+    rval <- rbind(rval, atable)
   }
+
   rval
 }
 
@@ -196,6 +197,7 @@ print.sinx <- function(x, ...)
   line1 <- x$quote
   line2 <- paste("   -- ", x$author, x$context, sep = "")
   line3 <- paste("      ", x$source, x$date, sep = "")
+  line4 <- paste("Created on", Sys.Date(), "by the [sinx package](https://pzhao.org/pkg/sinx).")
 
   # ## Problem: account for chase where line contains "\n"
   # linesplit <- function(line, width, gap = "      ") {
@@ -219,9 +221,10 @@ print.sinx <- function(x, ...)
   # line2 <- linesplit(line2, width)
   # line3 <- linesplit(line3, width)
 
-  cat(paste("\n", line1, "\n\n\n",
-            line2, "\n",
-            line3, "\n\n", sep = ""))
+  outtxt <- paste("\n", line1, "\n\n\n",
+                  line2, "\n",
+                  line3, "\n\n", line4, sep = "")
+  cat(outtxt)
 }
 
 

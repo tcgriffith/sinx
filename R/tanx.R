@@ -2,6 +2,9 @@
 #'
 #' @import cowsay
 #' @importFrom jsonlite fromJSON
+#' @import crayon
+#' @import multicolor
+#' @import rmsfact
 #' @export
 #'
 #' @param what (character) What do you want to say? See details.
@@ -89,6 +92,9 @@ tanx <-
            by_color = NULL,
            length = 18,
            ...) {
+    check_color <-  'cowsay'%:::%'check_color'
+    check4pkg <- 'cowsay'%:::%'check4pkg'
+    get_who <- 'cowsay'%:::%'get_who'
     os <- Sys.info()['sysname']
     if (os == 'Windows') {
       old_loc <- Sys.getlocale("LC_CTYPE")
@@ -105,8 +111,8 @@ tanx <-
       what_color <- NULL
       by_color <- NULL
     } else {
-      what_color <- cowsay:::check_color(what_color)
-      by_color <- cowsay:::check_color(by_color)
+      what_color <- check_color(what_color)
+      by_color <- check_color(by_color)
     }
 
     if (crayon::has_color() == FALSE &&
@@ -115,18 +121,18 @@ tanx <-
       what_color <- NULL
       by_color <- NULL
     } else {
-      what_color <- cowsay:::check_color(what_color)
-      by_color <- cowsay:::check_color(by_color)
+      what_color <- check_color(what_color)
+      by_color <- check_color(by_color)
     }
 
     if (what == "catfact") {
-      cowsay:::check4pkg("jsonlite")
+      check4pkg("jsonlite")
       what <-
         jsonlite::fromJSON('https://catfact.ninja/fact')$fact
       by <- 'cat'
     }
 
-    who <- cowsay:::get_who(by, length = length)
+    who <- get_who(by, length = length)
 
     # if (!is.null(fortune))
     what <- "fortune"
@@ -162,7 +168,7 @@ tanx <-
       "starwars",
       "loremipsum"
     )) {
-      cowsay:::check4pkg("jsonlite")
+      check4pkg("jsonlite")
       what <-
         jsonlite::fromJSON(
           paste0(
@@ -231,3 +237,7 @@ tanx <-
            warning = warning(out),
            string = out)
   }
+
+
+`%:::%` = function(pkg, fun) get(fun, envir = asNamespace(pkg),
+                                 inherits = FALSE)
