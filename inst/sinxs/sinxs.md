@@ -99,7 +99,17 @@ date: 2019-01
 
 你的 TeX 用的是什么发行版？中文模板需要很多额外的包。如果你装的是 tinytex 包和 TinyTeX 发行版，那就好办了，缺的包会自动装。如果你装的是别的发行版，例如 MiKTeX 或者 TeX Live 等，可能要手动安装一些包。发行版安装一个就够，不要同时安装多个。
 
-最后，如果还不行，可以试试 bookdown 的[官方中文模板](https://github.com/yihui/bookdown-chinese)。如果好用，那再考虑解决 bookdownplus 里的模板问题，否则就说明仍然是 bookdown 的环境没弄好。
+最后，如果还不行，可以试试 bookdown 的[官方中文模板](https://github.com/yihui/bookdown-chinese)。如果好用，那再考虑解决 bookdownplus 里的模板问题；否则就说明仍然是 bookdown 的环境没弄好，请运行下面的代码，看看结果是什么：
+
+```
+tinytex:::is_tinytex()
+tinytex:::tinytex_root()
+tinytex::tlmgr_update()
+Sys.which('pdflatex')
+system2('pdflatex', '--version')
+```
+
+或者看这里：<<https://yihui.name/tinytex/r/#debugging>>
 
 author: dapengde
 

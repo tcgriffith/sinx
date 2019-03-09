@@ -60,7 +60,7 @@ read.sinxs <- function(file = NULL,
     if(grepl('\\.csv$', afile)){
       if (os == 'Windows')
         Sys.setlocale("LC_CTYPE", "English")
-      atable <- read.table(
+      atable <- read.table(allowEscapes = TRUE,
         sinxs[i],
         header = TRUE,
         sep = sep[i],

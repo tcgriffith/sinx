@@ -10,7 +10,7 @@ cscx()
 a skeleton text in the clipboard
 }
 \description{
-Create a Skeleton in a Clipboard for a new sinX
+only valid in Windows OS.
 }
 \examples{
 cscx()

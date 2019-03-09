@@ -1,5 +1,6 @@
 #' Create a Skeleton in a Clipboard for a new sinX
 #'
+#' @description only valid in Windows OS.
 #' @return a skeleton text in the clipboard
 #' @import rosr
 #' @export
@@ -7,7 +8,9 @@
 #' @examples
 #' cscx()
 cscx <- function() {
-  skeleton <- c("",
+  os <- Sys.info()['sysname']
+  if (os == 'Windows') {
+    skeleton <- c("",
                 "",
                 "author: ",
                 "",
@@ -18,7 +21,11 @@ cscx <- function() {
                 "date:",
                 "",
                 "---")
+
   writeLines(skeleton, 'clipboard')
+  return(message('Now you can paste the skeleton text to your text editor.'))
+  }
+  return(message('This function is valid only in Windows OS.'))
 }
 
 get_entry <- function(x) {
