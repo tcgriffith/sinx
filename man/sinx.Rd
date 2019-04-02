@@ -2,7 +2,7 @@
 % Please edit documentation in R/sinx.R
 \name{sinx}
 \alias{sinx}
-\title{Sino Xmen IN the R community.}
+\title{Sino Xmen's sayings the R community.}
 \usage{
 sinx(which = NULL, sinxs.data = NULL, fixed = TRUE, showMatches = FALSE, 
     author = character(), ...)
@@ -24,7 +24,7 @@ sinx(which = NULL, sinxs.data = NULL, fixed = TRUE, showMatches = FALSE,
 an object of class "sinx" which is a row from a data frame of sayings (like those read in from read.sinxs).
 }
 \description{
-Sino Xmen IN the R community.
+Sino Xmen's sayings the R community.
 }
 \examples{
 sinx()

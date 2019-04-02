@@ -7,10 +7,10 @@
 cscx()
 }
 \value{
-a skeleton text in the clipboard
+a skeleton text for contributing to the database
 }
 \description{
-only valid in Windows OS.
+Create a Skeleton in a Clipboard for a new sinX
 }
 \examples{
 cscx()

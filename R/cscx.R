@@ -1,16 +1,13 @@
 #' Create a Skeleton in a Clipboard for a new sinX
 #'
-#' @description only valid in Windows OS.
-#' @return a skeleton text in the clipboard
-#' @import rosr
+#' @return a skeleton text for contributing to the database
+#' @importFrom clipr clipr_available write_clip
 #' @export
 #'
 #' @examples
 #' cscx()
 cscx <- function() {
-  os <- Sys.info()['sysname']
-  if (os == 'Windows') {
-    skeleton <- c("",
+  skeleton <- c("",
                 "",
                 "author: ",
                 "",
@@ -21,11 +18,12 @@ cscx <- function() {
                 "date:",
                 "",
                 "---")
-
-  writeLines(skeleton, 'clipboard')
-  return(message('Now you can paste the skeleton text to your text editor.'))
+  if (clipr::clipr_available()) {
+    clipr::write_clip(skeleton)
+    message('Now you can paste the skeleton text to your text editor.')
+  } else {
+    message('Clipboard is unavailable.')
   }
-  return(message('This function is valid only in Windows OS.'))
 }
 
 get_entry <- function(x) {
@@ -35,8 +33,7 @@ get_entry <- function(x) {
     loc <- grep(paste0('^', i, ':'), x)
     txt <- gsub(paste0('^', i, ':(.*)'), '\\1', x[loc])
     x <- x[-loc]
-    rm_space <- 'rosr' %:::% 'rm_space'
-    txt <- rm_space(txt)
+    txt <- gsub("^[[:space:]]*|[[:space:]]*$", "", txt)
     entry <- c(entry, txt)
   }
   # merge the rest
