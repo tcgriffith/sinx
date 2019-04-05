@@ -68,7 +68,8 @@ read.sinxs <- function(file = NULL,
         colClasses = "character",
         encoding = 'UTF-8'
       )
-      Sys.setlocale("LC_CTYPE", old_loc)
+      if (os == 'Windows')
+        Sys.setlocale("LC_CTYPE", old_loc)
     }
 
     if(grepl('\\.md$', afile))
@@ -81,7 +82,7 @@ read.sinxs <- function(file = NULL,
 
 sinxs.env <- new.env()
 
-#' Sino Xmen IN the R community.
+#' Sino Xmen's sayings the R community.
 #'
 #' @param which an integer specifying the row number of `sinxs.data`. Alternatively `which`` can be a character and `grep`` is used to try to find a suitable row.
 #' @param sinxs.data data frame containing a saying in each row. By default the data from the 'sinx' package are used.
