@@ -4,7 +4,7 @@
 \alias{print.sinx}
 \title{Print R sinx sayings.}
 \usage{
-\method{print}{sinx}(x, ...)
+\method{print}{sinx}(x)
 }
 \arguments{
 \item{x}{an object of class "sinx", usually a single row from `sinxs.data`.}

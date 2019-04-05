@@ -1,0 +1,29 @@
+---
+title: "Untitled"
+author: "TC"
+date: "4/5/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+x = list.files("./inst/sinxs/", full.names=TRUE)
+
+x
+```
+
+```{r}
+data.table::fread(x[9])
+```
+
+
+
+```{r}
+read.sinxs()
+```
+

@@ -1,0 +1,40 @@
+- quote: 这个问题我很感兴趣。能否提供一个可以重现问题的数据和代码示例，让我直接拷贝粘贴就能运行？最好附带 `session_info()` 信息。
+  author: dapengde
+  context: d.cosx.org
+  source: d.cosx.org
+  date: 2018-12
+- quote: 奇怪了你的代码在我的机器上完全没有问题啊
+  author: tctcab
+  context: <https://d.cosx.org/d/7673/15>
+  source: d.cosx.org
+  date: 2018-09
+- quote: "节约别人的时间，就是节约自己的时间。"
+  author: wglaive
+  context: <https://d.cosx.org/d/420212/6>
+  source: d.cosx.org
+  date: 2018-10  
+- quote: Sweave 好像就是一边编译 LaTeX 的时候就可以一边执行程序源代码并即时输出结果，我也没正式用过……
+  author: yihui
+  context: <https://d.cosx.org/d/420198/2>
+  source: d.cosx.org
+  date: 2007-10
+- quote: 如果你去看医生，去医院了对医生说，我生病了，你别管我生了什么病，马上给我开药吧。医生能开么？另：Mac和Unix怎么扯上关系了？……
+  author: yihui
+  context: <https://d.cosx.org/d/9234-9234/3>
+  source: d.cosx.org  
+  date: 2007-12
+- quote: 那我就不知道为什么了……
+  author: yihui
+  context: <https://d.cosx.org/d/420428/4>
+  source: d.cosx.org
+  date: 2019-01
+- quote: 看了你最近提出的一系列问题，我觉得大部分属于 R 语言的基本操作。只要通读一下基础的入门书，这些问题都会迎刃而解。否则，即使别人临时帮你解决了这些问题，后续仍然会问题不断。祝你好运。
+  author: dapengde
+  context: <https://d.cosx.org/d/420485/2>
+  source: d.cosx.org
+  date: 2019-02
+- quote: 八字箴言：遇到问题，先试升级。
+  author: yihui
+  context: https://d.cosx.org/d/419135/23
+  source: d.cosx.org
+  date: 2016-06

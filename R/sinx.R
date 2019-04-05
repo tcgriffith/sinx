@@ -32,23 +32,25 @@
 #' libs <- sinx::read.sinxs(c(path_f, path_s), sep = c(";", ","))
 read.sinxs <- function(file = NULL,
                        sep = ',',
-                       lib = 'sinxs') {
+                       lib = NULL) {
   os <- Sys.info()['sysname']
   if (os == 'Windows') {
     old_loc <- Sys.getlocale("LC_CTYPE")
     on.exit(Sys.setlocale("LC_CTYPE", old_loc))
-    # Sys.setlocale("LC_CTYPE", "English")
   }
+
+  allfiles <- dir(system.file("sinxs", package = "sinx"))
+  stems = gsub("\\..*$","",allfiles)
+
+  if(is.null(lib)){
+    lib = stems
+  }
+
   if (!is.null(file)) {
     sinxs <- file[file.exists(file)]
-  } else {
-    sep <- ','
-    allfiles <- dir(system.file("sinxs", package = "sinx"))
-    firstname <- gsub('\\.csv|\\.md', '', allfiles)
-    lastname <- gsub('.*(\\.csv|\\.md)$', '\\1', allfiles)
-    loc <- firstname %in% lib
-    sinxs <-
-      system.file("sinxs", paste0(firstname[loc], lastname[loc]), package = "sinx")
+  }
+  else {
+    sinxs <- system.file("sinxs", allfiles[stems %in% lib], package = "sinx")
   }
 
   rval <- NULL
@@ -60,21 +62,32 @@ read.sinxs <- function(file = NULL,
     if(grepl('\\.csv$', afile)){
       if (os == 'Windows')
         Sys.setlocale("LC_CTYPE", "English")
-      atable <- read.table(allowEscapes = TRUE,
-        sinxs[i],
-        header = TRUE,
-        sep = sep[i],
-        quote = "\"",
-        colClasses = "character",
-        encoding = 'UTF-8'
-      )
+
+      atable <- data.table::fread(sinxs[i])
+      print(ncol(atable))
+      # atable <- read.table(allowEscapes = TRUE,
+      #   sinxs[i],
+      #   header = TRUE,
+      #   sep = sep[i],
+      #   quote = "\"",
+      #   colClasses = "character",
+      #   encoding = 'UTF-8'
+      # )
       if (os == 'Windows')
         Sys.setlocale("LC_CTYPE", old_loc)
     }
 
-    if(grepl('\\.md$', afile))
-      atable <- md2df(sinxs[i])
-    rval <- rbind(rval, atable)
+    # if(grepl('\\.md$', afile))
+    #   atable <- md2df(sinxs[i])
+
+    if(grepl("\\.yaml$", afile)){
+      atable <- do.call(rbind, (yaml::read_yaml(afile)))
+      atable <- as.data.frame.matrix(atable,stringsAsFactors=FALSE)
+      print(ncol(atable))
+      # print(atable)
+    }
+
+    # rval <- rbind(rval, atable)
   }
 
   rval
@@ -173,11 +186,8 @@ sinx <- function(which = NULL,
 #'
 #' @return print.
 #' @export
-print.sinx <- function(x, ...)
+print.sinx <- function(x)
 {
-  # if(is.null(width)) width <- getOption("width")
-  # if(width < 10) stop("'width' must be greater than 10")
-
   x$context <-
     if (is.na(x$context) | x$context == '')
       ""
@@ -195,134 +205,15 @@ print.sinx <- function(x, ...)
   if (anyNA(x))
     stop("'quote' is required")
 
-  line1 <- x$quote
-  line2 <- paste("   -- ", x$author, x$context, sep = "")
-  line3 <- paste("      ", x$source, x$date, sep = "")
-  line4 <- paste("Created on", Sys.Date(), "by the [sinx package](https://pzhao.org/pkg/sinx).")
+  lines = character()
+  lines[1] <- x$quote
+  lines[2] <- paste0("   -- ", x$author, x$context)
+  lines[3] <- paste0("      ", x$source, x$date)
 
-  # ## Problem: account for chase where line contains "\n"
-  # linesplit <- function(line, width, gap = "      ") {
-  #   if(nchar(line) < width) return(line)
-  #   rval <- NULL
-  #   while(nchar(line) > width) {
-  #     line <- strsplit(line, " ")[[1]]
-  #     if(any((nchar(line) + 1 + nchar(gap)) > width))
-  #         stop("'width' is too small for sinx")
-  #     breakat <- which.max(cumsum(nchar(line) + 1) > width) - 1L
-  #     rval <- paste(rval, paste(line[1:breakat], collapse = " "), "\n", sep = "")
-  #     line <- paste(gap, paste(line[-(1:breakat)], collapse = " "), sep = "")
-  #   }
-  #   paste(rval, line, sep = "")
-  # }
-
-  # line1 <- strsplit(line1, "\\\\n")[[1]]
-  # for(i in 1:length(line1))
-  #   line1[i] <- linesplit(line1[i], width, gap = "")
-  # line1 <- paste(line1, collapse = "\n")
-  # line2 <- linesplit(line2, width)
-  # line3 <- linesplit(line3, width)
-
-  outtxt <- paste("\n", line1, "\n\n\n",
-                  line2, "\n",
-                  line3, "\n\n", line4, sep = "")
+  outtxt <- paste0(lines, collapse = "\n")
   cat(outtxt)
 }
 
-
-#' Create TANX when starting R
-#'
-#' @param method (character) add or remove `sinx::tanx()` in ~/.Rprofile
-#' @param lib library name of the sayings.See `?read.sinxs()`.
-#'
-#' @return a new ~/.Rprofile
-#' @export
-#'
-#' @examples
-#' ctanx()
-#' ctanx(lib = 'jinyong')
-#' ctanx('remove')
-ctanx <- function(method = c('add', 'remove'),
-                  lib = 'sinxs') {
-  method <- match.arg(method)
-  homedir <- Sys.getenv('HOME')
-  newcode <-
-    paste0('sinx::tanx(sinxs.data = sinx::read.sinxs(lib = "', lib, '"))')
-  newfile <- file.path(homedir, '.Rprofile')
-  if (method == 'add')
-    write(newcode, newfile, append = T)
-  if (method == 'remove') {
-    if (file.exists(newfile)) {
-      oldtext <- readLines(newfile, encoding = 'UTF-8')
-      newtext <- gsub('^sinx::tanx\\(.*\\)$', '', oldtext)
-      writeLines(newtext, newfile, useBytes = TRUE)
-    }
-  }
-}
-
-merge_text <-
-  function(sinxs.data = NULL,
-           method = c('console', 'vig')) {
-    method <- match.arg(method)
-    if (is.null(sinxs.data)) {
-      sinxs.data <- read.sinxs(lib = 'sinxs')
-    }
-    sinxs.data$quote <- gsub('\\\\n', '\n',  sinxs.data$quote)
-
-    os <- Sys.info()['sysname']
-    if (os == 'Windows') {
-      old_loc <- Sys.getlocale("LC_CTYPE")
-      on.exit(Sys.setlocale("LC_CTYPE", old_loc))
-      Sys.setlocale("LC_CTYPE", "Chinese")
-    }
-    n <- nrow(sinxs.data)
-    sinxs.data$n <- 1:n
-
-    sinxs.data$context <- ifelse(sinxs.data$context != '',
-                                 paste0(' (', sinxs.data$context, ')'),
-                                 '')
-    sinxs.data$source <- ifelse(sinxs.data$source != '',
-                              paste0(', ', sinxs.data$source),
-                              '')
-    sinxs.data$date <- ifelse(sinxs.data$date != '',
-                              paste0(', ', sinxs.data$date),
-                              '')
-    if (method == 'vig') {
-      sinxs.data$sep <-
-        apply(sinxs.data[, c('author', 'context', 'source', 'date')], 1, function(x)
-          ifelse(any(unlist(x) != ''), '\n\n--- ', ''))
-      sinxs.data$vig <-
-        paste(
-          paste0('### ', sinxs.data$n),
-          sinxs.data$quote,
-          paste0(
-            sinxs.data$sep,
-            sinxs.data$author,
-            sinxs.data$context,
-            sinxs.data$source,
-            sinxs.data$date
-          ),
-          sep = '\n\n'
-        )
-    }
-    if (method == 'console') {
-      sinxs.data$sep <-
-        apply(sinxs.data[, c('author', 'context', 'source', 'date')], 1, function(x)
-          ifelse(any(unlist(x) != ''), '\n--- ', ''))
-      sinxs.data$vig <-
-        paste(
-          sinxs.data$quote,
-          paste0(
-            sinxs.data$sep,
-            sinxs.data$author,
-            sinxs.data$context,
-            sinxs.data$source,
-            sinxs.data$date
-          ),
-          sep = '\n'
-        )
-    }
-    return(sinxs.data)
-  }
 
 #' create sinx data spread sheet
 #'
