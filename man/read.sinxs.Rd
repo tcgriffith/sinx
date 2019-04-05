@@ -34,10 +34,9 @@ Read sayings from spread sheets.
 \examples{
 libs <- read.sinxs()
 
-libs <- read.sinxs(lib = "jinyong")
+libs <- read.sinxs(lib = 'jinyong')
 
-libs <- read.sinxs(lib = c("tangshi", "songshi", "chinese", "yangsheng", "english", 
-    "jinyong"))
+libs <- read.sinxs(lib = c("tangshi", "songshi", "chinese", "yangsheng", "english","jinyong"))
 
 path_f <- system.file("fortunes/fortunes.csv", package = "fortunes")
 path_s <- system.file("sinxs/sinxs.csv", package = "sinx")
